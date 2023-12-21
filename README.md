@@ -5,7 +5,7 @@ This laravel package helps to limit request and ban suspicious users for a perio
 
 ## Installation and usage
 
-This package requires PHP 8.1 and Laravel 8.* or higher.  
+This package requires PHP  and Laravel installed.  
 
 You can install the package via composer:
 
@@ -77,7 +77,7 @@ Route::middleware(['superban:10,1,1'])->group(function () {
 
 ```
 
-where superban is the name of the middleware, 10 is the number of request, 1 is the number of miniutes interval for the 10 request. and the last parameter 1 is the number of minutes you will be banned if you make a request more than 10 times per minute.
+Where superban is the name of the middleware, 10 is the number of request, 1 is the number of minutes interval for the 10 request. and the last parameter 1 is the number of minutes you will be banned if you make a request more than 10 times per minute.
 
 Update the limit to which ever value you want and you are good to go
 
