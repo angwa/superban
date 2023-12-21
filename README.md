@@ -10,7 +10,7 @@ This package requires PHP  and Laravel installed.
 You can install the package via composer:
 
 ```bash
-composer require angwa/superban
+composer require angwa/superban:dev-master
 ```
 Next step is to register our service providers. Simply open ```config/app.php``` and locate  providers section and add  ```Superban\SuperbanServiceProvider::class,,``` Like below
 ```
