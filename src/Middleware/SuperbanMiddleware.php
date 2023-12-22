@@ -106,7 +106,7 @@ class SuperbanMiddleware
         $timeInterval = Config::get('superban.superban_time_interval');
         $banDuration = Config::get('superban.superban_ban_duration');
 
-        // The checks below will overide the above if the params exist in the routes
+        // The checks below will override the above if the params exist in the routes
         if (count($conditions) >= 1) {
             $maxRequests = (int) $conditions[0];
         }
