@@ -71,7 +71,7 @@ class SuperbanMiddlewareTest extends TestCase
         $response1->assertStatus(200);
         $response2->assertStatus(200);
         $response3->assertStatus(200);
-        $response4->assertStatus(403); // Corrected assertion
+        $response4->assertStatus(403);
         $response4->assertSee("You are currently banned from using this service for 1 minutes.");
     }
 }
