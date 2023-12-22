@@ -3,11 +3,12 @@
 namespace Superban\Middleware;
 
 use Closure;
+use Exception;
 use Illuminate\Cache\RateLimiter;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Log;
 
 class SuperbanMiddleware
 {
@@ -76,7 +77,19 @@ class SuperbanMiddleware
     protected function banUser(Request $request, $banDuration): void
     {
         $banKey = $this->resolveBanKey($request);
-        $this->cache->put('superban', $banKey, now()->addMinutes($banDuration));
+
+        try {
+            Log::info('User successfully banned', [
+                'parameters' => [
+                    'requestHeaders' => $request->header(),
+                    'requestBody' =>  $request->all()
+                ]
+            ]);
+
+            $this->cache->put('superban', $banKey, now()->addMinutes($banDuration));
+        } catch (Exception $e) {
+            Log::error('Cache put error occurred', ['exception' => $e]);
+        }
 
         // I am clearing the rate limiter hits below since it has already been cached and we can use cache to check.
         $this->limiter->clear($banKey);
@@ -106,7 +119,7 @@ class SuperbanMiddleware
         $timeInterval = Config::get('superban.superban_time_interval');
         $banDuration = Config::get('superban.superban_ban_duration');
 
-        // The checks below will overide the above if the params exist in the routes
+        // The checks below will override the above if the params exist in the routes
         if (count($conditions) >= 1) {
             $maxRequests = (int) $conditions[0];
         }
