@@ -83,7 +83,7 @@ Update the limit to which ever value you want and you are good to go
 
 ## Testing
 
-To run the tests on package, update composer and type this:
+To run the tests on package, install/update composer and type this:
 
 ``` bash
 vendor/bin/phpunit

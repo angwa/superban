@@ -3,7 +3,7 @@
   <coverage/>
   <testsuites>
     <testsuite name="Superban Package Tests">
-      <directory>./</directory>
+      <directory>tests</directory>
     </testsuite>
   </testsuites>
   <source>
