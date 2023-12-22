@@ -3,6 +3,7 @@
 namespace Superban;
 
 use Illuminate\Support\ServiceProvider;
+use Superban\Middleware\SuperbanMiddleware;
 
 class SuperbanServiceProvider extends ServiceProvider
 {
@@ -24,6 +25,6 @@ class SuperbanServiceProvider extends ServiceProvider
 
     protected function registerMiddleware()
     {
-        app('router')->aliasMiddleware('superban', \Superban\Middleware\SuperbanMiddleware::class);
+        app('router')->aliasMiddleware('superban', SuperbanMiddleware::class);
     }
 }
